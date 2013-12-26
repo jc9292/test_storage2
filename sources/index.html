@@ -12,12 +12,14 @@ ca marche ?
 data: <div id=oo></div><br>
 <div id=oo2></div><br>
 <script type="text/javascript">
+var ms1 = new Date().getTime();
 var xhr=new XMLHttpRequest(), blob, fileReader=new FileReader();
-xhr.open("GET", "http://photo.maxifoot.fr/kompany-22.jpg", true);
+xhr.open("GET", "http://photo.maxifoot.fr/kompany-22.jpg?ts="+ms1, true);
 xhr.responseType = "arraybuffer";
 xhr.addEventListener("load", function () {
   document.getElementById('oo2').innerHTML='load ok';
   if (xhr.status === 200) {
+          document.getElementById('oo2').innerHTML='load ok2 '+xhr;
     blob = new Blob([xhr.response], {type: "image/jpeg"});
     fileReader.onload = function (evt) {
         var result = evt.target.result;
