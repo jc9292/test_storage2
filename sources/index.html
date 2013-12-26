@@ -1,0 +1,28 @@
+
+<img src="" id=rhino>
+<div id=oo></div>
+<script>
+var xhr=new XMLHttpRequest(), blob, fileReader=new FileReader();
+xhr.open("GET", "http://photo.maxifoot.fr/kompany-22.jpg", true);
+xhr.responseType = "arraybuffer";
+xhr.addEventListener("load", function () {
+  if (xhr.status === 200) {
+    blob = new Blob([xhr.response], {type: "image/jpeg"});
+    fileReader.onload = function (evt) {
+        var result = evt.target.result;
+        var rhino=document.getElementById("rhino");
+        rhino.setAttribute("src", result);
+        try {
+            localStorage.setItem("rhino", result);
+            $('#oo').html('ok'+localStorage.getItem("rhino"));
+        } catch (e) {
+            console.log("Storage failed: " + e);
+        }
+    };
+    fileReader.readAsDataURL(blob);
+  }
+}, false);
+xhr.send();
+</script>
+</body>
+</html>
