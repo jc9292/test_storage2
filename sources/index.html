@@ -21,7 +21,9 @@ xhr.addEventListener("load", function () {
   if (xhr.status === 200) {
           document.getElementById('oo2').innerHTML='load ok2 '+xhr;
     blob = new Blob([xhr.response], {type: "image/jpeg"});
+    document.getElementById('oo2').innerHTML='load ok3 '+blob;
     fileReader.onload = function (evt) {
+            document.getElementById('oo2').innerHTML='load ok4 '+evt;
         var result = evt.target.result;
         var rhino=document.getElementById("rhino");
         rhino.setAttribute("src", result);
