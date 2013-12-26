@@ -7,13 +7,16 @@
         <script type="text/javascript" src="http://stats.maxifoot.com/0_app_mobile/js/jquery-1.10.2.min.js"></script>
 </head>
 <body>
-<img src="" id=rhino>
-<div id=oo></div>
+ca marche ?
+<img src="" id=rhino><br>
+data: <div id=oo></div><br>
+<div id=oo2></div><br>
 <script type="text/javascript">
 var xhr=new XMLHttpRequest(), blob, fileReader=new FileReader();
 xhr.open("GET", "http://photo.maxifoot.fr/kompany-22.jpg", true);
 xhr.responseType = "arraybuffer";
 xhr.addEventListener("load", function () {
+  document.getElementById('oo2').innerHTML='load ok';
   if (xhr.status === 200) {
     blob = new Blob([xhr.response], {type: "image/jpeg"});
     fileReader.onload = function (evt) {
@@ -24,7 +27,7 @@ xhr.addEventListener("load", function () {
             localStorage.setItem("rhino", result);
             $('#oo').html('ok'+localStorage.getItem("rhino"));
         } catch (e) {
-            console.log("Storage failed: " + e);
+            
         }
     };
     fileReader.readAsDataURL(blob);
